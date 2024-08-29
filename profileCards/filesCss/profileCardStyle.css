@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+
+
+/* css reset */
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+/* image reset  */
+
+img
+{
+    display: block; /* for å fjerne mellom rom under bilder by default
+    siden de er inline elementer */
+    max-width: 100%; /* det betyr at bildet ikke vil overflowe sin beholder */
+    height: auto; /* siden vi hadde høyde i html, derfor er den med her */
+
+}
+
+/* utility klasser */
+
+.nowrap
+{
+
+    white-space: nowrap; /* vil ikke wrape tekt i f.eks navn osv */
+
+}
+
+/* general styling for html filen */
+
+html
+{
+    scroll-behavior: smooth; /* bruke dette for å få en smoothe skrolling
+    mellom de ansatte, slik at det ikke bare automatisk hopper til den */
+    
+
+}
+
+body
+{
+    font: 1.5rem "Roboto", sans-serif;
+    min-height: 100vh;
+
+    background-color: grey;
+    background-image: radial-gradient(whitesmoke, grey);/* denne starter fra midten */
+    display: flex;/* lager body til en flex beholder */
+    flex-direction: column;
+
+}
+
+
+
+header,footer
+{
+    position: sticky; /* det betyr at header og footer blir værende der 
+    de er selv om siden skroller opp og ned */
+    background-color: #1e293b;
+    color: whitesmoke;
+    text-align: center; /* sentrerer teksten */
+
+
+}
+
+nav 
+{
+    background-color: white;
+    padding: 0.5rem;
+    border-bottom: 2px solid black;
+    font-weight: bolder;
+    display: flex; /* gjør det som til en flex beholder */
+    justify-content: space-evenly; /* sprer ut navnene til ansatte
+    i lik grad i alle retninger */
+
+
+}
+
+/* styler linkene for f.eks besøkte linker */
+nav a, nav a:visited
+{
+    color: black;
+}
+
+/* style når man ha musa over linken */
+nav a:hover
+{
+    color:hsla(205, 83%, 53%, 0.6);
+
+}
+/* når man trykker på en link  */
+
+nav a:focus
+{
+    color:hsla(5, 96%, 49%, 0.6);
+
+}
+
+main
+{
+    flex-grow: 1; /* bruker flex grow 1 slik at den fyller siden */
+    display: flex; /* lager flex beholder, slik at jeg kan flytte på
+    elementer fritt */
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    scroll-padding-bottom: 20rem;
+
+}
+
+header
+{
+    top: 0;
+
+
+}
+
+footer {
+    position: sticky; /* Pass på at sticky ikke forårsaker problemer */
+    background-color: #1e293b;
+    color: whitesmoke;
+    text-align: center;
+}
+
+/* profile card styling*/
+
+.card
+{
+    scroll-margin-top: 8rem; /* når vi trykker på en link, så sender 
+    oss litt
+    ned for headeren slik at 
+    ikke noe av bildet forsvinner oppover */
+    scroll-margin-bottom: 200rem; /* for å ikke få info til å forsvinne
+    under footer */
+
+    width: min(100%,750px); /* bruk minst 100 % , men ikke noe større
+    enn 350px */
+    background-color: #cbd5e1;
+    border: 2px solid black; /* lager border rundt de ansatte */
+    border-radius: 15px; /* lager border radius rundt de ansatte sine profiler */
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 500px;
+
+
+}
+.card.anette img {
+    max-height: 664px; /* Sett en maks høyde som matcher de andre kortene */
+}
+/* styling for card figure klassen for å ikke få navnet til å wrape
+siden figure er en del av card klassen */
+
+.card figure
+{
+    display: flex; /* gjør det til en flex beholder */
+    flex-flow: column nowrap;
+
+}
+
+/* styling for bilder som er en del av card klassen */
+.card img 
+{
+    border: 5px double black;
+    border-radius: 50% /* siden det er et kvadrat, kan jeg bruke
+    border radius 50% for å gjøre det som en til en sirkel */
+
+}
+
+/* styling for figcaption som er en del av card klassen
+denne styrer navn på ansatte og hva de gjør. */
+
+.card figcaption
+{
+    font-weight: bolder;
+    font-size: 2rem;
+    margin: 1rem;
+    text-align: center; /* plasserer tekst i midten */
+
+}
+
+
+
+
+/* for SMALL når nettlesren blir liten
+min-width er der det starter frem til 576px  som er breakpoint*/
+@media screen and (min-width: 576px)
+{
+    main
+    {
+        justify-content: center;
+        flex-flow: row wrap; /* ønsker at den skal wrape hvis de bruker
+        mer enn bredden som er satt */
+        padding: 1rem;
+    }
+
+  
+
+ 
+    
+}
+
+/* medium dvs medium skjermer opp til 772 px */
+
+@media screen and (min-width: 772px)
+{
+    
+    .card figcaption
+    {
+        margin: 0.1em 0;
+
+    }
+
+    .card p
+    {
+        margin-top: 1rem;
+
+    }
+
+
+ 
+    
+}
+
+/* for mobiler */
+@media screen and (max-height: 425px) and (min-aspect-ratio: 7/4)
+{
+
+    h1
+    {
+        font-size: 1.5rem;
+
+    }
+   
+    nav
+    {
+        display: none;
+
+    }
+
+    main
+    {
+        flex-flow: row nowrap; /* for å ikke wrape tekst */
+        justify-content: space-evenly; /* fordele likt */
+        align-items: stretch; /* strekker de for å gi de samme høyde, i tilfellet
+        oppløsningen strekker de */
+
+    }
+
+    .card
+    {
+        width: mincalc(33%-0.25rem), 200px;
+
+    }
+
+    .card figcaption, .card p 
+    {
+        font-size: 1.25rem;
+
+    }
+
+
+
+ 
+    
+}
+
